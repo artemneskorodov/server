@@ -97,7 +97,6 @@ http_request_t *parse_http(char *string_request){
 
         if(header == NULL){
 
-            printf("was here1");
             
             free_request_headers(request->first_header);
             free(request->url);
@@ -114,8 +113,6 @@ http_request_t *parse_http(char *string_request){
 
             if(string_request[index + header_name_size] == 0){
 
-                printf("was here2 %lld\n", header_name_size);
-
                 free_request_headers(request->first_header);
                 free(request->url);
                 free(request);
@@ -129,8 +126,6 @@ http_request_t *parse_http(char *string_request){
         header->name = (char *)malloc(sizeof(char) * (header_name_size + 1));
 
         if(header->name == NULL){
-
-            printf("was here4 %lld\n", header_name_size);
             
             free_request_headers(request->first_header);
             free(request->url);
@@ -152,8 +147,6 @@ http_request_t *parse_http(char *string_request){
         for(; string_request[index + header_value_size] != '\r'; header_value_size++){
 
             if(string_request[index + header_value_size] == 0){
-
-                printf("was here3 %lld\n", header_value_size);
                 
                 free_request_headers(request->first_header);
                 free(request->url);
@@ -169,8 +162,6 @@ http_request_t *parse_http(char *string_request){
         header->value = (char *)malloc(sizeof(char) * (header_value_size + 1));
 
         if(header->value == NULL){
-
-            printf("was here5 %lld\n", header_value_size);
 
             free_request_headers(request->first_header);
             free(request->url);

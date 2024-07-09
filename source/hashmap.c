@@ -60,8 +60,6 @@ int hashmap_insert(hashmap_t *hashmap, char *key, void *value){
 
     size_t hash = hash_func(key, hashmap->size);
 
-    printf("%lld\n", hash);
-
     return insert_binary_tree(hashmap->trees[hash], key, value);
 
 }
