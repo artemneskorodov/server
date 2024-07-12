@@ -89,7 +89,6 @@ http_request_t *parse_http(char *string_request){
 
     index += 2;//string_request[index] now points to first letter of first header
 
-
     /*getting headers*/
     while(string_request[index - 2] != '\r' || string_request[index - 1] != '\n' || string_request[index] != '\r' || string_request[index + 1] != '\n'){
 
@@ -187,7 +186,13 @@ http_request_t *parse_http(char *string_request){
 
     size_t body_size = 0;
 
-    for(; string_request[index + body_size] != 0; body_size++);
+    for(; string_request[index + body_size] != 0; body_size++) printf("%d", string_request[index]);
+
+    if(body_size == 0){
+        request->body = NULL;
+        return request;
+    }
+
 
     request->body = (char *)malloc(sizeof(char) * (body_size + 1));
 

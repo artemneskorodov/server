@@ -9,6 +9,16 @@ socket_t create_tcp(char *ip, int port){
     if(server_socket < 0) return -1;
 
 
+    struct timeval timeout;
+    timeout.tv_sec = 0;
+    timeout.tv_usec = 250;
+
+    if(setsockopt(server_socket, SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout)) != 0){
+        close(server_socket);
+        return -5;
+    }
+
+
     struct sockaddr_in server_info;
 
     server_info.sin_addr.s_addr = inet_addr(ip);
@@ -56,8 +66,20 @@ char *recv_tcp(socket_t conn, size_t *size){
     for(size_t i = 0; i < *size; i++) result[i] = 0;
 
 
-    while(recv(conn, result + *size - DEFAULT_RECV_SIZE - 1, DEFAULT_RECV_SIZE, 0) >= DEFAULT_RECV_SIZE){
+    int flag = 1;
 
+
+    while(flag){
+        
+        int recv_state = recv(conn, result + *size - DEFAULT_RECV_SIZE - 1, DEFAULT_RECV_SIZE, 0);
+
+        if(recv_state == -1){
+            free(result);
+            *size = 0;
+            return NULL;
+        }
+
+        if(recv_state < DEFAULT_RECV_SIZE) flag = 0;
 
         *size += DEFAULT_RECV_SIZE;
 
