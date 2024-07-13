@@ -1,5 +1,6 @@
 #include "./include/hashmap.h"
 #include "./include/http_parser.h"
+#include "./include/text_parser.h"
 
 typedef enum{
     TEXT_HTML = 0,

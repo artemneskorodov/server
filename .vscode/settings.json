@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "server.h": "c",
-        "tcp.h": "c"
+        "tcp.h": "c",
+        "text_parser.h": "c"
     }
 }
