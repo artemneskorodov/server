@@ -5,6 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *change_text(char *input, char *from, char *to, size_t *input_size, size_t from_size, size_t to_size);
+char *change_text(char *input, char *from, char *to, size_t *input_size);
 
 #endif

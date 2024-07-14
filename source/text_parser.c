@@ -1,6 +1,10 @@
 #include "../include/text_parser.h"
 
-char *change_text(char *input, char *from, char *to, size_t *input_size, size_t from_size, size_t to_size){
+char *change_text(char *input, char *from, char *to, size_t *input_size){
+
+    size_t from_size = strlen(from);
+    size_t to_size = strlen(to);
+
     int changes_number = 0;
     for(size_t index = 0; index < *input_size - from_size; index++){
 

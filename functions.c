@@ -74,7 +74,6 @@ char *render_static(char *path, size_t *size, content_type_t content_type){
     else if(content_type == TEXT_CSS) strcat(result, "text/css; charset=utf-8\r\n");
     else if(content_type == TEXT_JAVASCRIPT) strcat(result, "text/javascript; charset=utf-8\r\n");
 
-
     strcat(result, "Content-length: ");
     strcat(result, size_string);
     strcat(result, "\r\n");
